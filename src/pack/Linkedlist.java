@@ -131,7 +131,7 @@ public class Linkedlist {
             System.out.println("No courses to display.");
             return;
         }
-
+        System.out.println("\nHere are all the courses you have taken so far:");
         Node current = head;
         while (current != null) {
             System.out.println(current.course.toString() + ", Grade: " + current.grade);

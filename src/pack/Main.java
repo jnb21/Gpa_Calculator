@@ -32,7 +32,6 @@ public class Main {
 			break;
 		
 		case 3:
-			System.out.println("\nHere are all the courses you have taken so far:");
 			taken.displayAllCourses();
 			break;
 			
