@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 public class CourseManager {
 
-    private static ArrayList<Course> courseList = new ArrayList<>(); 
-	private static HashMap<String, Course> courseMap = new HashMap<>();
+    private  ArrayList<Course> courseList = new ArrayList<>(); 
+	private  HashMap<String, Course> courseMap = new HashMap<>();
     private static HashMap<String, Double> gradeScale = new HashMap<>();
 
     // Static initialization block - runs once when class is loaded
@@ -26,34 +26,54 @@ public class CourseManager {
         gradeScale.put("F",  0.0);
     }
 
+    //Validate Letter grade
+    public boolean validate(String grade){
+        return gradeScale.containsKey(grade);
+    }
+
 
     //Adding courses to the courseList
-    public void addCourse(Course course){
+    public void addCourse(Course course)throws DuplicateCourseException, InvalidGradeException{
+        if (!this.validate(course.getCourseLetterGrade()))
+            throw new InvalidGradeException();
+
+        if (courseMap.containsKey(course.getCourseName()))
+            throw new DuplicateCourseException();
+
         courseList.add(course);
         courseMap.put(course.getCourseName(), course);
     }
 
     //Removing the course
-    public void removeCourse(Course course){
+    public boolean removeCourse(Course course) throws CourseNotFoundException {
+
+        if (!courseMap.containsKey(course.getCourseName()))
+            throw new CourseNotFoundException();
+
         courseList.remove(course);
         courseMap.remove(course.getCourseName());
+
+        return true;
     }
 
-    public void displayCourses(){
+    public void displayCourses() throws EmptyCourseListException{
+
+        if (courseList.isEmpty())
+            throw new EmptyCourseListException();
         for (Course crs: courseList)
             System.out.println(crs);
     }
 
-    public double calculateGPA(){
+    public double calculateGPA() throws EmptyCourseListException{
 
         if (courseList.isEmpty())
-            return -1;
+            throw new EmptyCourseListException();
 
         double totalPoints = 0; int totalCredits = 0;
 
         for (Course crs: courseList){
-            totalPoints += (gradeScale.get(crs.getLetterGrade()) * crs.getCredit());
-            totalCredits += crs.getCredit();
+            totalPoints += (gradeScale.get(crs.getCourseLetterGrade()) * crs.getCourseCredit());
+            totalCredits += crs.getCourseCredit();
         }
 
         return totalPoints/(double)totalCredits;

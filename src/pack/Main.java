@@ -13,7 +13,7 @@ public class Main {
 	}
 
 		public static void displayMenu(){
-			/ TODO Auto-generated method stub		
+					
 		boolean again = true;	
 		
 	System.out.println("===================  WELCOME TO THE STUDENT GPA CALCULATOR  =================");
@@ -36,12 +36,20 @@ public class Main {
 			break;
 		
 		case 3:
-			taken.displayAllCourses();
+			try{
+			manager.displayCourses();
+			} catch (EmptyCourseListException e){
+				System.out.println(e.getMessage());
+			}
 			break;
 			
 		case 4:
-			double gpa = taken.calculateGPA();
+			try {
+			double gpa = manager.calculateGPA();
 			System.out.printf("Your current GPA is: %.2f\n", gpa);
+			} catch (EmptyCourseListException e){
+				System.out.println(e.getMessage());
+			}
 		    break;
 			
 		case 5:
@@ -50,10 +58,10 @@ public class Main {
 			break;
 		}
 	}
-		}
+	}
 	
 
-		public static boolean addCourse() {
+		public static void addCourse() {
 			System.out.println("Enter the code of the course to add:(e.g., COMP248)");
 			String name = keyIn.nextLine().trim().toUpperCase();
 
@@ -64,39 +72,30 @@ public class Main {
 			System.out.println("Enter your recieved letter grade from the course: ");
 			String letterGrade = keyIn.nextLine().trim().toUpperCase();
 
-
 			Course newCourse = new Course(name,letterGrade,credit);
-
-			System.out.println("Enter your letter grade for the course (e.g., A, B+, C-):");
-			String letterGrade = keyIn.nextLine().trim().toUpperCase();
-
-			//getting GPA value from CourseManager
-			Double gpaValue = CourseManager.convertLetterGradeToGpa(letterGrade);
 			
-			//Cheking gpa value
-			if (gpaValue == null) {
-			    System.out.println("Invalid letter grade. Please enter a valid letter grade (e.g., A, B+, C-).");
-			    return false;
+			try{
+			manager.addCourse(newCourse);
+			} catch (InvalidGradeException e){
+				System.out.println(e.getMessage());
+			} catch (DuplicateCourseException e){
+				System.out.println(e.getMessage());
 			}
-
-			// Use of the declared Linkedlist that will hold added couses
-			taken.addCourse(newCourse, gpaValue); 
-
-		//to modify later
-		return true;
 	}
 	
-	/**
-	 * @method removeCourseOption will remove a course from the linkedlist of taken courses
-	 * if the course already exists in the list.
-	 */
 	
-	private static boolean removeCourseOption() {
+	
+	private static void removeCourseOption(){
+	try{
 	System.out.println("Enter the code of the course to remove:(e.g., COMP248)");
 	String name = keyIn.nextLine().trim().toUpperCase();
-	
-	return taken.removeCourse(name);
+
+	Course rmd = manager.getCourse(name);
+
+	manager.removeCourse(rmd);
+
+	} catch (CourseNotFoundException e){
+		System.out.println(e.getMessage());
+	}
 	}
 }
-
-//For next, add exceptions and continue the menu.
