@@ -6,7 +6,7 @@ public class Course{
     private double credit;
     private String letterGrade;
 
-    public Course(String name, Sting letterGrade, double credit) {
+    public Course(String name, String letterGrade, double credit) {
         this.name = name;
         this.credit = credit;
         this.letterGrade = letterGrade;
@@ -16,16 +16,16 @@ public class Course{
         return name;
     }
 
-    public double getCredit() {
+    public double getCourseCredit() {
         return credit;
     }
 
-    public void getLetterGrade(){
+    public String getCourseLetterGrade(){
         return letterGrade;
     }
 
     public String toString() {
-        return "\nCourse Name: " + name + "\nGrade: +"letterGrade+"\nCredits: " + credit+"\n";
+        return "\nCourse Name: " + name + "\nGrade: "+ letterGrade+ "\nCredits: " + credit ;
     }   
 
     public boolean equals(Object other) {
