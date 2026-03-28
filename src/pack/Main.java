@@ -5,11 +5,15 @@ import java.util.Scanner;
 public class Main {
 	 
 	static Scanner keyIn = new Scanner(System.in);
-	static Linkedlist taken = new Linkedlist(); //To uses privates methods as well
+	static CourseManager manager = new CourseManager ();
 
 	public static void main(String[] args){
 
-		// TODO Auto-generated method stub		
+		displayMenu();
+	}
+
+		public static void displayMenu(){
+			/ TODO Auto-generated method stub		
 		boolean again = true;	
 		
 	System.out.println("===================  WELCOME TO THE STUDENT GPA CALCULATOR  =================");
@@ -46,19 +50,10 @@ public class Main {
 			break;
 		}
 	}
-}
+		}
 	
-	/**
-	 * Private methods for the main class
-	 * @return in the case of addCourse, returns true if course is added successfully, false otherwise
-	 * 
-	 * @method addCourse will add a course to the linkedlist of taken courses
-	 * that will later use to help other oprations such as calculating GPA,
-	 * removing courses, etc.
-	 */
 
-
-		public static boolean addCourse(){
+		public static boolean addCourse() {
 			System.out.println("Enter the code of the course to add:(e.g., COMP248)");
 			String name = keyIn.nextLine().trim().toUpperCase();
 
@@ -66,13 +61,11 @@ public class Main {
 			double credit = keyIn.nextDouble();
 			keyIn.nextLine();
 
-			// checking for valid credit value
-			if (credit <= 0 || credit > 6) {
-			    System.out.println("Invalid credit value. Please enter a value between 0 and 6.");
-			    return false;
-			}
+			System.out.println("Enter your recieved letter grade from the course: ");
+			String letterGrade = keyIn.nextLine().trim().toUpperCase();
 
-			Course newCourse = new Course(name,credit);
+
+			Course newCourse = new Course(name,letterGrade,credit);
 
 			System.out.println("Enter your letter grade for the course (e.g., A, B+, C-):");
 			String letterGrade = keyIn.nextLine().trim().toUpperCase();
@@ -105,3 +98,5 @@ public class Main {
 	return taken.removeCourse(name);
 	}
 }
+
+//For next, add exceptions and continue the menu.
