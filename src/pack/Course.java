@@ -4,13 +4,15 @@ public class Course{
 
     private String name;
     private double credit;
+    private String letterGrade;
 
-    public Course(String name, double credit) {
+    public Course(String name, Sting letterGrade, double credit) {
         this.name = name;
         this.credit = credit;
+        this.letterGrade = letterGrade;
     }
 
-	public String getName() {
+	public String getCourseName() {
         return name;
     }
 
@@ -18,8 +20,12 @@ public class Course{
         return credit;
     }
 
+    public void getLetterGrade(){
+        return letterGrade;
+    }
+
     public String toString() {
-        return "Course Name: " + name + ", Credits: " + credit;
+        return "\nCourse Name: " + name + "\nGrade: +"letterGrade+"\nCredits: " + credit+"\n";
     }   
 
     public boolean equals(Object other) {
