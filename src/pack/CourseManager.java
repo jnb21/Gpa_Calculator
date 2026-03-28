@@ -1,53 +1,69 @@
 package pack;
 
 import java.util.HashMap;
-/**
- * @author Jordan Bikong
- * 
- * CourseManager class to manage course grades and their corresponding GPA values.
- * It contains a HashMap that maps letter grades to their respective GPA values.
- * 
- * @constructor CourseManager()
- * @method convertLetterGradeToGpa(String letterGrade): Static method to convert a letter grade to its GPA value.
- */
+import java.util.ArrayList;
 
 public class CourseManager {
 
+    private static ArrayList<Course> courseList = new ArrayList<>(); 
+	private static HashMap<String, Course> courseMap = new HashMap<>();
+    private static HashMap<String, Double> gradeScale = new HashMap<>();
 
-	private static HashMap<String, Double> GRADE_MAP = new HashMap<>();
-
-	// Static initialization block - runs once when class is loaded
+    // Static initialization block - runs once when class is loaded
     static {
-        GRADE_MAP.put("A+", 4.3);
-        GRADE_MAP.put("A",  4.0);
-        GRADE_MAP.put("A-", 3.7);
-        GRADE_MAP.put("B+", 3.3);
-        GRADE_MAP.put("B",  3.0);
-        GRADE_MAP.put("B-", 2.7);
-        GRADE_MAP.put("C+", 2.3);
-        GRADE_MAP.put("C",  2.0);
-        GRADE_MAP.put("C-", 1.7);
-        GRADE_MAP.put("D+", 1.3);
-        GRADE_MAP.put("D",  1.0);
-        GRADE_MAP.put("D-", 0.7);
-        GRADE_MAP.put("F",  0.0);
+        gradeScale.put("A+", 4.3);
+        gradeScale.put("A",  4.0);
+        gradeScale.put("A-", 3.7);
+        gradeScale.put("B+", 3.3);
+        gradeScale.put("B",  3.0);
+        gradeScale.put("B-", 2.7);
+        gradeScale.put("C+", 2.3);
+        gradeScale.put("C",  2.0);
+        gradeScale.put("C-", 1.7);
+        gradeScale.put("D+", 1.3);
+        gradeScale.put("D",  1.0);
+        gradeScale.put("D-", 0.7);
+        gradeScale.put("F",  0.0);
     }
 
-    /**
-     * Converts a letter grade to its GPA value.
-     * Handles whitespace and case insensitivity.
-     * 
-     * @param letterGrade the letter grade (e.g., "A", "B+", "C-")
-     * @return the GPA value, or null if invalid grade
-     */
-    public static Double convertLetterGradeToGpa(String letterGrade) {
-    	
-        if (letterGrade == null || letterGrade.trim().isEmpty()) return null;
-        
-     
-        letterGrade = letterGrade.trim().toUpperCase();
-        
-        
-        return GRADE_MAP.get(letterGrade);
+
+    //Adding courses to the courseList
+    public void addCourse(Course course){
+        courseList.add(course);
+        courseMap.put(course.getCourseName(), course);
+    }
+
+    //Removing the course
+    public void removeCourse(Course course){
+        courseList.remove(course);
+        courseMap.remove(course.getCourseName());
+    }
+
+    public void displayCourses(){
+        for (Course crs: courseList)
+            System.out.println(crs);
+    }
+
+    public double calculateGPA(){
+
+        if (courseList.isEmpty())
+            return -1;
+
+        double totalPoints = 0; int totalCredits = 0;
+
+        for (Course crs: courseList){
+            totalPoints += (gradeScale.get(crs.getLetterGrade()) * crs.getCredit());
+            totalCredits += crs.getCredit();
+        }
+
+        return totalPoints/(double)totalCredits;
+    }
+
+    public boolean checkDuplicates(Course course){
+        return courseMap.containsKey(course.getCourseName());
+    }
+
+    public Course getCourse(String coursename){
+        return courseMap.get(coursename);
     }
 }
