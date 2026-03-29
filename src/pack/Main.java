@@ -90,9 +90,7 @@ public class Main {
 	System.out.println("Enter the code of the course to remove:(e.g., COMP248)");
 	String name = keyIn.nextLine().trim().toUpperCase();
 
-	Course rmd = manager.getCourse(name);
-
-	manager.removeCourse(rmd);
+	manager.removeCourse(name);
 
 	} catch (CourseNotFoundException e){
 		System.out.println(e.getMessage());
