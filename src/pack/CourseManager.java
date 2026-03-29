@@ -45,10 +45,12 @@ public class CourseManager {
     }
 
     //Removing the course
-    public boolean removeCourse(Course course) throws CourseNotFoundException {
+    public boolean removeCourse(String name) throws CourseNotFoundException {
 
-        if (!courseMap.containsKey(course.getCourseName()))
+        if (!courseMap.containsKey(name))
             throw new CourseNotFoundException();
+
+        Course course = courseMap.get(name);
 
         courseList.remove(course);
         courseMap.remove(course.getCourseName());

@@ -7,6 +7,6 @@ public class CourseNotFoundException extends Exception{
     }
 
     public CourseNotFoundException (){
-        super("This course does not exist");
+        super("This course does not exist.");
     }
 }
