@@ -20,7 +20,7 @@ public class Main {
 	
 	while(again) {
 		System.out.print("\n1. Add a Course\n2. Remove a Course\n3. View All Courses"
-				+ "\n4. Calculate GPA\n5. Exit \n\nEnter your choice: ");
+				+ "\n4. Calculate GPA\n5. Edit Course\n6. Exit \n\nEnter your choice: ");
 		
 		int choice = keyIn.nextInt();
 		
@@ -51,8 +51,12 @@ public class Main {
 				System.out.println(e.getMessage());
 			}
 		    break;
-			
+		
 		case 5:
+			modifyCourse();
+			break;
+			
+		case 6:
 			System.out.println("You are exiting the program...");
 			again = false;
 			break;
@@ -96,4 +100,47 @@ public class Main {
 		System.out.println(e.getMessage());
 	}
 	}
+
+	public static boolean modifyCourse() {
+    try {
+        System.out.println(" --- Course List --- ");
+        manager.displayCourses();
+
+        System.out.println("Enter the course name you would like to edit:");
+        String toedit = keyIn.nextLine().trim().toUpperCase();
+
+        System.out.println("What do you want to edit?");
+        System.out.println("1. Grade");
+        System.out.println("2. Credits");
+        int choice = keyIn.nextInt();
+        keyIn.nextLine(); // clear buffer
+
+        switch (choice) {
+            case 1:
+                System.out.println("Enter the new grade:");
+                String grade = keyIn.nextLine().trim().toUpperCase();
+                manager.modifyCourseGrade(toedit, grade);
+                System.out.println("Grade was successfully modified.");
+                break;
+
+            case 2:
+                System.out.println("Enter the new amount of credits:");
+                int credit = keyIn.nextInt();
+                keyIn.nextLine();
+                manager.modifyCourseCredits(toedit, credit);
+                System.out.println("Credit number successfully modified.");
+                break;
+
+            default:
+                System.out.println("Invalid option.");
+        }
+
+    } catch (EmptyCourseListException e) {
+        System.out.println(e.getMessage());
+    } catch (CourseNotFoundException e) {
+        System.out.println(e.getMessage());
+    }
+
+    return true;
+}
 }
