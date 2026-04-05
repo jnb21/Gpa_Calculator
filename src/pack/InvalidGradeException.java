@@ -7,10 +7,6 @@ public class InvalidGradeException extends Exception{
     }
 
     public InvalidGradeException (){
-<<<<<<< HEAD
         super("The grade entered is invalid.");
-=======
-        super("This grad eis invalid.");
->>>>>>> version2
     }
 }

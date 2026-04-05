@@ -16,24 +16,20 @@ public class Course{
         return name;
     }
 
-<<<<<<< HEAD
-=======
+
     public void setLetterGrade(String letterGrade){
         this.letterGrade = letterGrade;
     }
 
->>>>>>> version2
+
     public double getCourseCredit() {
         return credit;
     }
 
-<<<<<<< HEAD
-=======
     public void setCourseCredits(double credit){
         this.credit = credit;
     }
 
->>>>>>> version2
     public String getCourseLetterGrade(){
         return letterGrade;
     }

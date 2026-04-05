@@ -29,7 +29,6 @@ public class CourseManager {
     //Validate Letter grade
     public boolean validate(String grade){
         return gradeScale.containsKey(grade);
-<<<<<<< HEAD
     }
 
 
@@ -88,70 +87,7 @@ public class CourseManager {
 
     public Course getCourse(String coursename){
         return courseMap.get(coursename);
-=======
->>>>>>> version2
-    }
 
-
-    //Adding courses to the courseList
-    public void addCourse(Course course)throws DuplicateCourseException, InvalidGradeException{
-        if (!this.validate(course.getCourseLetterGrade()))
-            throw new InvalidGradeException();
-
-        if (courseMap.containsKey(course.getCourseName()))
-            throw new DuplicateCourseException();
-
-        courseList.add(course);
-        courseMap.put(course.getCourseName(), course);
-    }
-
-//Removing the course
-    public boolean removeCourse(String name) throws CourseNotFoundException {
-
-        if (!courseMap.containsKey(name))
-            throw new CourseNotFoundException();
-
-        Course course = courseMap.get(name);
-
-        courseList.remove(course);
-        courseMap.remove(course.getCourseName());
-
-        return true;
-    }
-
-//display courses
-    public void displayCourses() throws EmptyCourseListException{
-
-        if (courseList.isEmpty())
-            throw new EmptyCourseListException();
-        for (Course crs: courseList)
-            System.out.println(crs);
-    }
-
-//calculate gpa
-    public double calculateGPA() throws EmptyCourseListException{
-
-        if (courseList.isEmpty())
-            throw new EmptyCourseListException();
-
-        double totalPoints = 0; int totalCredits = 0;
-
-        for (Course crs: courseList){
-            totalPoints += (gradeScale.get(crs.getCourseLetterGrade()) * crs.getCourseCredit());
-            totalCredits += crs.getCourseCredit();
-        }
-
-        return totalPoints/(double)totalCredits;
-    }
-
-//check duplicates
-    public boolean checkDuplicates(Course course){
-        return courseMap.containsKey(course.getCourseName());
-    }
-
-//get course
-    public Course getCourse(String coursename){
-        return courseMap.get(coursename);
     }
 
 // 2 modifications (garde and credits)
