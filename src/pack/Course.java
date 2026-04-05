@@ -16,8 +16,16 @@ public class Course{
         return name;
     }
 
+    public void setLetterGrade(String letterGrade){
+        this.letterGrade = letterGrade;
+    }
+
     public double getCourseCredit() {
         return credit;
+    }
+
+    public void setCourseCredits(double credit){
+        this.credit = credit;
     }
 
     public String getCourseLetterGrade(){

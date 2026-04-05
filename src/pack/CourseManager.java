@@ -44,7 +44,7 @@ public class CourseManager {
         courseMap.put(course.getCourseName(), course);
     }
 
-    //Removing the course
+//Removing the course
     public boolean removeCourse(String name) throws CourseNotFoundException {
 
         if (!courseMap.containsKey(name))
@@ -58,6 +58,7 @@ public class CourseManager {
         return true;
     }
 
+//display courses
     public void displayCourses() throws EmptyCourseListException{
 
         if (courseList.isEmpty())
@@ -66,6 +67,7 @@ public class CourseManager {
             System.out.println(crs);
     }
 
+//calculate gpa
     public double calculateGPA() throws EmptyCourseListException{
 
         if (courseList.isEmpty())
@@ -81,11 +83,37 @@ public class CourseManager {
         return totalPoints/(double)totalCredits;
     }
 
+//check duplicates
     public boolean checkDuplicates(Course course){
         return courseMap.containsKey(course.getCourseName());
     }
 
+//get course
     public Course getCourse(String coursename){
         return courseMap.get(coursename);
     }
+
+// 2 modifications (garde and credits)
+    public void modifyCourseGrade(String courseName, String newGrade)
+        throws CourseNotFoundException {
+
+    if (!courseMap.containsKey(courseName)) {
+        throw new CourseNotFoundException();
+    }
+
+    Course c = courseMap.get(courseName);
+    c.setLetterGrade(newGrade);
+}
+
+public void modifyCourseCredits(String courseName, int newCredits)
+        throws CourseNotFoundException {
+
+    if (!courseMap.containsKey(courseName)) {
+        throw new CourseNotFoundException();
+    }
+
+    Course c = courseMap.get(courseName);
+    c.setCourseCredits(newCredits);
+}
+
 }
