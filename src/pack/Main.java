@@ -1,6 +1,7 @@
 package pack;
 
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class Main {
 	 
@@ -12,7 +13,7 @@ public class Main {
 		displayMenu();
 	}
 
-		public static void displayMenu(){
+		public static void displayMenu() throws InputMismatchException{
 					
 		boolean again = true;	
 		
@@ -22,9 +23,10 @@ public class Main {
 		System.out.print("\n1. Add a Course\n2. Remove a Course\n3. View All Courses"
 				+ "\n4. Calculate GPA\n5. Edit Course\n6. Exit \n\nEnter your choice: ");
 		
-		int choice = keyIn.nextInt();
+		try{
+			int choice = keyIn.nextInt();
+			keyIn.nextLine();
 		
-		keyIn.nextLine();
 		
 		switch (choice) {
 		case 1:
@@ -61,29 +63,38 @@ public class Main {
 			again = false;
 			break;
 		}
+		} catch (InputMismatchException e){
+			System.out.println("Invalid imput. Please enter a number.");
+			keyIn.nextLine();
+		}
 	}
 	}
 	
 
 		public static void addCourse() {
+			try{
 			System.out.println("Enter the code of the course to add:(e.g., COMP248)");
 			String name = keyIn.nextLine().trim().toUpperCase();
-
+			
 			System.out.println("Enter the number of credits the course is worth (0-6):");
 			double credit = keyIn.nextDouble();
 			keyIn.nextLine();
+			
 
 			System.out.println("Enter your recieved letter grade from the course: ");
 			String letterGrade = keyIn.nextLine().trim().toUpperCase();
 
 			Course newCourse = new Course(name,letterGrade,credit);
 			
-			try{
+			
 			manager.addCourse(newCourse);
 			} catch (InvalidGradeException e){
 				System.out.println(e.getMessage());
 			} catch (DuplicateCourseException e){
 				System.out.println(e.getMessage());
+			}catch (InputMismatchException e){
+				System.out.println("Invalid imput. Please enter a number.");
+				keyIn.nextLine();
 			}
 	}
 	
@@ -110,20 +121,28 @@ public class Main {
         String toedit = keyIn.nextLine().trim().toUpperCase();
 
         System.out.println("What do you want to edit?");
-        System.out.println("1. Grade");
-        System.out.println("2. Credits");
+		System.out.println("1. Course name");
+        System.out.println("2. Grade");
+        System.out.println("3. Credits");
         int choice = keyIn.nextInt();
         keyIn.nextLine(); // clear buffer
 
         switch (choice) {
-            case 1:
+			case 1:
+                System.out.println("Enter the new name of the course:");
+                String name = keyIn.nextLine().trim().toUpperCase();
+                manager.modifyCourseName(toedit, name);
+                System.out.println("Name of the class was successfully modified.");
+                break;
+
+            case 2:
                 System.out.println("Enter the new grade:");
                 String grade = keyIn.nextLine().trim().toUpperCase();
                 manager.modifyCourseGrade(toedit, grade);
                 System.out.println("Grade was successfully modified.");
                 break;
 
-            case 2:
+            case 3:
                 System.out.println("Enter the new amount of credits:");
                 int credit = keyIn.nextInt();
                 keyIn.nextLine();
@@ -139,7 +158,10 @@ public class Main {
         System.out.println(e.getMessage());
     } catch (CourseNotFoundException e) {
         System.out.println(e.getMessage());
-    }
+    } catch (InputMismatchException e){
+		System.out.println("Invalid input. Please enter a number.");
+		keyIn.nextLine();
+	}
 
     return true;
 }

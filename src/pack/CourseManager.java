@@ -113,4 +113,15 @@ public void modifyCourseCredits(String courseName, int newCredits)
     c.setCourseCredits(newCredits);
 }
 
+public void modifyCourseName(String courseName, String newName)
+        throws CourseNotFoundException{
+
+    if (!courseMap.containsKey(courseName)){
+        throw new CourseNotFoundException();
+    }
+
+    Course c = courseMap.get(courseName);
+    c.setCourseName(newName);
+}
+
 }

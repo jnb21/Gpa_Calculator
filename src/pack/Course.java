@@ -15,6 +15,10 @@ public class Course{
 	public String getCourseName() {
         return name;
     }
+    
+    public void setCourseName(String newName){
+        this.name = newName;
+    }
 
 
     public void setLetterGrade(String letterGrade){
