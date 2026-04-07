@@ -71,14 +71,14 @@ public class CourseManager {
         if (courseList.isEmpty())
             throw new EmptyCourseListException();
 
-        double totalPoints = 0; int totalCredits = 0;
+        double totalPoints = 0, totalCredits = 0;
 
         for (Course crs: courseList){
             totalPoints += (gradeScale.get(crs.getCourseLetterGrade()) * crs.getCourseCredit());
             totalCredits += crs.getCourseCredit();
         }
 
-        return totalPoints/(double)totalCredits;
+        return totalPoints/totalCredits;
     }
 
     public boolean checkDuplicates(Course course){
