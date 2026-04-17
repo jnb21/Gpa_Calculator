@@ -15,13 +15,13 @@ public class Main {
 
 		public static void displayMenu() throws InputMismatchException{
 					
-		boolean again = true;	
+		boolean again = true;
 		
 	System.out.println("===================  WELCOME TO THE STUDENT GPA CALCULATOR  =================");
 	
 	while(again) {
 		System.out.print("\n1. Add a Course\n2. Remove a Course\n3. View All Courses"
-				+ "\n4. Calculate GPA\n5. Edit Course\n6. Exit \n\nEnter your choice: ");
+				+ "\n4. Calculate GPA\n5. Edit Course\n6. Search Course\n7. Exit \n\nEnter your choice: ");
 		
 		try{
 			int choice = keyIn.nextInt();
@@ -57,8 +57,12 @@ public class Main {
 		case 5:
 			modifyCourse();
 			break;
-			
+
 		case 6:
+			searchCourse();
+			break;
+			
+		case 7:
 			System.out.println("You are exiting the program...");
 			again = false;
 			break;
@@ -70,7 +74,7 @@ public class Main {
 	}
 	}
 	
-
+		
 		public static void addCourse() {
 			try{
 			System.out.println("Enter the code of the course to add:(e.g., COMP248)");
@@ -165,4 +169,18 @@ public class Main {
 
     return true;
 }
+
+	public static void searchCourse(){
+		System.out.println("Enter the name of the course code:");
+
+		String tosearch = keyIn.nextLine().trim().toUpperCase();
+
+		Course crs = manager.getCourse(tosearch);
+
+		if (crs == null)
+			System.out.println("We currently do not have record of this course");
+
+		else
+			System.out.println(crs);
+	}
 }
