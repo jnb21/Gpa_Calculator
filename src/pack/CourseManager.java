@@ -5,9 +5,12 @@ import java.util.ArrayList;
 
 public class CourseManager {
 
-    private  ArrayList<Course> courseList = new ArrayList<>(); 
+    private  ArrayList<Course> courseList = new ArrayList<>();
 	private  HashMap<String, Course> courseMap = new HashMap<>();
     private static HashMap<String, Double> gradeScale = new HashMap<>();
+
+    private static int numberOfCourses = 0;
+    private static  double totalPoints = 0, totalCredits = 0;
 
     // Static initialization block - runs once when class is loaded
     static {
@@ -26,9 +29,59 @@ public class CourseManager {
         gradeScale.put("F",  0.0);
     }
 
+
+    public int getnumberOfCourses(){
+        return numberOfCourses;
+    }
+
+    public double getTotalCredits(){
+        return totalCredits;
+    }
+
+    public double getHighestGrade() throws EmptyCourseListException{
+
+    if (courseList.isEmpty())
+        throw new EmptyCourseListException();
+
+    double max = gradeScale.get("F");
+
+    for (Course c : courseList) {
+        double number = gradeScale.get(c.getCourseLetterGrade());
+
+        if (number > max)
+            max = number;
+    }
+
+    return max;
+    }
+
+    public double getLowestGrade() throws EmptyCourseListException{
+
+        if (courseList.isEmpty())
+            throw new EmptyCourseListException();
+
+        double min = gradeScale.get("A+");
+
+        for (Course c : courseList) {
+        double number = gradeScale.get(c.getCourseLetterGrade());
+
+        if (number < min)
+            min = number;
+        }
+
+        return min;
+    }
+
+
     //Validate Letter grade
     public boolean validate(String grade){
         return gradeScale.containsKey(grade);
+    }
+
+    //GET COURSE
+    public Course getCourse(String coursename){
+        return courseMap.get(coursename);
+
     }
 
 
@@ -43,6 +96,8 @@ public class CourseManager {
 
         courseList.add(course);
         courseMap.put(course.getCourseName(), course);
+
+        numberOfCourses++;
     }
 
 
@@ -75,8 +130,6 @@ public class CourseManager {
         if (courseList.isEmpty())
             throw new EmptyCourseListException();
 
-        double totalPoints = 0, totalCredits = 0;
-
         for (Course crs: courseList){
             totalPoints += (gradeScale.get(crs.getCourseLetterGrade()) * crs.getCourseCredit());
             totalCredits += crs.getCourseCredit();
@@ -86,18 +139,11 @@ public class CourseManager {
     }
 
     //CHECK DUPLICATES
-    public boolean checkDuplicates(Course course){
+        public boolean checkDuplicates(Course course){
         return courseMap.containsKey(course.getCourseName());
     }
 
-
-    //GET COURSE
-    public Course getCourse(String coursename){
-        return courseMap.get(coursename);
-
-    }
-
-// MODIFY COURSES (ALL 3 METHODS)
+    // MODIFY COURSES (ALL 3 METHODS)
     public void modifyCourseGrade(String courseName, String newGrade)
         throws CourseNotFoundException {
 
@@ -107,9 +153,9 @@ public class CourseManager {
 
     Course c = courseMap.get(courseName);
     c.setLetterGrade(newGrade);
-}
+    }
 
-public void modifyCourseCredits(String courseName, int newCredits)
+    public void modifyCourseCredits(String courseName, int newCredits)
         throws CourseNotFoundException {
 
     if (!courseMap.containsKey(courseName)) {
@@ -118,19 +164,17 @@ public void modifyCourseCredits(String courseName, int newCredits)
 
     Course c = courseMap.get(courseName);
     c.setCourseCredits(newCredits);
-}
-
-public void modifyCourseName(String courseName, String newName)
-        throws CourseNotFoundException{
-
-    if (!courseMap.containsKey(courseName)){
-        throw new CourseNotFoundException();
     }
 
-    Course c = courseMap.get(courseName);
-    c.setCourseName(newName);
-}
+            public void modifyCourseName(String courseName, String newName)
+            throws CourseNotFoundException{
 
+            if (!courseMap.containsKey(courseName)){
+            throw new CourseNotFoundException();
+            }
 
+            Course c = courseMap.get(courseName);
+            c.setCourseName(newName);
+        }
 
 }
