@@ -8,12 +8,15 @@ public class Main {
 	static Scanner keyIn = new Scanner(System.in);
 	static CourseManager manager = new CourseManager ();
 
-	public static void main(String[] args){
-
+	public static void main(String[] args) {
+		try{
 		displayMenu();
+		} catch (Exception e){
+			System.out.println(e.getMessage());
+		}
 	}
 
-		public static void displayMenu() throws InputMismatchException{
+		public static void displayMenu() throws InputMismatchException,Exception{
 					
 		boolean again = true;
 		
@@ -21,7 +24,7 @@ public class Main {
 	
 	while(again) {
 		System.out.print("\n1. Add a Course\n2. Remove a Course\n3. View All Courses"
-				+ "\n4. Calculate GPA\n5. Edit Course\n6. Search Course\n7. Exit \n\nEnter your choice: ");
+				+ "\n4. Calculate GPA\n5. Edit Course\n6. Search Course\n7. Statistics\n8. Exit \n\nEnter your choice: ");
 		
 		try{
 			int choice = keyIn.nextInt();
@@ -61,11 +64,18 @@ public class Main {
 		case 6:
 			searchCourse();
 			break;
-			
+
 		case 7:
+			viewstatistics();
+			break;
+			
+		case 8:
 			System.out.println("You are exiting the program...");
 			again = false;
 			break;
+		
+			default:
+				System.out.println("Enter a valid option");
 		}
 		} catch (InputMismatchException e){
 			System.out.println("Invalid imput. Please enter a number.");
@@ -182,5 +192,48 @@ public class Main {
 
 		else
 			System.out.println(crs);
+	}
+
+	public static void viewstatistics() throws Exception{
+
+		boolean more = true;
+
+		while (more){
+
+		System.out.print("\n1.Number of regitstered courses\n2.Total Earned credits\n3.Highest Grade Course\n"+
+		"4.Lowest Grade Course\n5.Exit\n\nEnter an option withing the previous:");
+
+		int choice = keyIn.nextInt();
+
+		try{
+		switch (choice){
+			case 1:
+				manager.getnumberOfCourses();
+				break;
+			
+			case 2:
+				manager.getEarnedCredits();
+				break;
+			
+			case 3:
+				manager.getHighestGrade();
+				break;
+			
+			case 4:
+				manager.getLowestGrade();
+				break;
+
+			case 5:
+				System.out.println("Return to the menu");
+				more = false;
+				break;
+
+			default:
+				System.out.println("Enter a valid choice");
+		}
+		} catch (Exception e){
+			System.out.println(e.getMessage());
+		}
+	}
 	}
 }

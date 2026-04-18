@@ -31,10 +31,15 @@ public class CourseManager {
 
 
     public int getnumberOfCourses(){
+
+        if (numberOfCourses == 0)
+            System.out.println("\nYou have not enrolled in any class yet.");
         return numberOfCourses;
     }
 
     public double getTotalCredits(){
+        if (totalCredits == 0)
+            System.out.println("\nYou have not earned any credits yet");
         return totalCredits;
     }
 
@@ -52,7 +57,30 @@ public class CourseManager {
             max = number;
     }
 
+
+    System.out.println("Your highest grade is: "+ max);
+    System.out.println("You have achived that grade in the following couses:");
+
+        for (Course c: courseList){
+            if (max == gradeScale.get(c.getCourseLetterGrade()))
+                System.out.println(c);
+        }
+
     return max;
+    }
+
+    
+
+    public double getEarnedCredits(){
+
+        double sum = 0.0;
+
+        for (Course c: courseList){
+            if(c.getCourseLetterGrade().equals("F"))
+                sum += c.getCourseCredit();
+        }
+
+        return sum;
     }
 
     public double getLowestGrade() throws EmptyCourseListException{
@@ -67,6 +95,14 @@ public class CourseManager {
 
         if (number < min)
             min = number;
+        }
+
+        System.out.println("Your lowest grade is: "+ min);
+        System.out.println("You have achived that grade in the following couses:");
+
+        for (Course c: courseList){
+            if (min == gradeScale.get(c.getCourseLetterGrade()))
+                System.out.println(c);
         }
 
         return min;
