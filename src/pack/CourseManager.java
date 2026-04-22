@@ -1,6 +1,7 @@
 package pack;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.ArrayList;
 
 public class CourseManager {
@@ -212,5 +213,20 @@ public class CourseManager {
             Course c = courseMap.get(courseName);
             c.setCourseName(newName);
         }
+
+        public List<Course> getAllCourses() {
+        return courseList;
+        }
+
+        //LOADING COURSES FROM FILES
+        public void loadCourses(List<Course> courses) {
+            courseList.clear();
+            courseMap.clear();
+
+        for (Course c : courses) {
+            courseList.add(c);
+            courseMap.put(c.getCourseName(), c);
+        }
+    }
 
 }

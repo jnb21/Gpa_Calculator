@@ -2,6 +2,7 @@ package pack;
 
 import java.util.Scanner;
 import java.util.InputMismatchException;
+import java.util.List;
 
 public class Main {
 	 
@@ -23,8 +24,9 @@ public class Main {
 	System.out.println("===================  WELCOME TO THE STUDENT GPA CALCULATOR  =================");
 	
 	while(again) {
-		System.out.print("\n1. Add a Course\n2. Remove a Course\n3. View All Courses"
-				+ "\n4. Calculate GPA\n5. Edit Course\n6. Search Course\n7. Statistics\n8. Exit \n\nEnter your choice: ");
+		System.out.print("\n1.  Add a Course\n2.  Remove a Course\n3.  View All Courses"
+				+ "\n4.  Calculate GPA\n5.  Edit Course\n6.  Search Course\n7.  Statistics\n8.  Save to File"
+				+"\n9.  Load from File\n10. Exit \n\nEnter your choice: ");
 		
 		try{
 			int choice = keyIn.nextInt();
@@ -68,8 +70,17 @@ public class Main {
 		case 7:
 			viewstatistics();
 			break;
-			
+
 		case 8:
+    		FileManager.saveToFile(manager.getAllCourses());
+    		break;
+		
+			case 9:
+    		List<Course> loaded = FileManager.loadFromFile();
+    		manager.loadCourses(loaded);
+    		break;
+			
+		case 10:
 			System.out.println("You are exiting the program...");
 			again = false;
 			break;
