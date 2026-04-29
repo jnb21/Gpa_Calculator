@@ -51,4 +51,4 @@ mvn test
 
 ## 👤 Author
 
-Maiwenn Jordan Bikong
+Jordan Bikong
