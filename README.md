@@ -46,8 +46,6 @@ mvn test
 
 * Connect to MySQL database
 * Build REST API (Spring Boot)
-* Add web interface
-* Persist data (no data loss after exit)
 
 ## 👤 Author
 
