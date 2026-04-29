@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../../src/pack"
+		},
+		{
+			"name": "gpa_calculator",
+			"path": "../../../../.."
+		}
+	],
+	"settings": {
+		"maven.view": "hierarchical"
+	}
+}
