@@ -8,15 +8,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.model.Course;
+
 public class FileManager {
 
     public static void saveToFile(List<Course> courses) {
     try (BufferedWriter writer = new BufferedWriter(new FileWriter("courses.txt"))) {
 
         for (Course c : courses) {
-            writer.write(c.getCourseName() + "," +
-                         c.getCourseLetterGrade() + "," +
-                         c.getCourseCredit());
+            writer.write(c.getCourseName() + "," +c.getCourseLetterGrade() + "," +
+                c.getCourseCredit());
             writer.newLine();
         }
 

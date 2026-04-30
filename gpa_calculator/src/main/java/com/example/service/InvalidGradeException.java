@@ -1,4 +1,4 @@
-package com.example;
+package com.example.service;
 
 public class InvalidGradeException extends Exception{
 

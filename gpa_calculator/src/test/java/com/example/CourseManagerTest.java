@@ -1,8 +1,14 @@
 package com.example;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import com.example.model.Course;
+import com.example.service.CourseManager;
+import com.example.service.DuplicateCourseException;
+import com.example.service.EmptyCourseListException;
+import com.example.service.CourseNotFoundException;
+
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+
 
 public class CourseManagerTest {
 
@@ -30,8 +36,8 @@ public class CourseManagerTest {
     void testGPA() throws Exception {
         CourseManager cm = new CourseManager();
 
-        cm.addCourse(new Course("Math", "A", 4.0));      // 4.0 * 4 = 16
-        cm.addCourse(new Course("Physics", "B", 3.0));   // 3.0 * 3 = 9
+        cm.addCourse(new Course("Math", "A", 4.0));
+        cm.addCourse(new Course("Physics", "B", 3.0));
 
         // Total = 25 / 7 = 3.5714
         assertEquals(25.0 / 7.0, cm.calculateGPA(), 0.0001);

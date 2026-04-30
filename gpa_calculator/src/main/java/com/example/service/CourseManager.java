@@ -1,8 +1,10 @@
-package com.example;
+package com.example.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import com.example.model.Course;
 
 public class CourseManager {
 

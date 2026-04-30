@@ -1,9 +1,11 @@
 com/example/App.class
 com/example/FileManager.class
-com/example/InvalidGradeException.class
-com/example/CourseNotFoundException.class
-com/example/CourseManager.class
+com/example/service/InvalidGradeException.class
+com/example/service/CourseNotFoundException.class
+com/example/service/DuplicateCourseException.class
+com/example/service/CourseManager.class
+com/example/database/TestDB.class
 com/example/Main.class
-com/example/DuplicateCourseException.class
-com/example/EmptyCourseListException.class
-com/example/Course.class
+com/example/service/EmptyCourseListException.class
+com/example/database/DatabaseConnection.class
+com/example/model/Course.class

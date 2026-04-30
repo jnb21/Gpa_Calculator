@@ -4,6 +4,14 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import com.example.model.Course;
+import com.example.service.CourseManager;
+import com.example.service.CourseNotFoundException;
+import com.example.service.DuplicateCourseException;
+import com.example.service.EmptyCourseListException;
+import com.example.service.InvalidGradeException;
+
+
 public class Main {
 	 
 	static Scanner keyIn = new Scanner(System.in);

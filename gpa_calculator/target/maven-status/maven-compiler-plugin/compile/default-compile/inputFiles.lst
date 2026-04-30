@@ -1,9 +1,11 @@
 /Users/bikong/Git/Gpa_Calculator/gpa_calculator/src/main/java/com/example/App.java
-/Users/bikong/Git/Gpa_Calculator/gpa_calculator/src/main/java/com/example/Course.java
-/Users/bikong/Git/Gpa_Calculator/gpa_calculator/src/main/java/com/example/CourseManager.java
-/Users/bikong/Git/Gpa_Calculator/gpa_calculator/src/main/java/com/example/CourseNotFoundException.java
-/Users/bikong/Git/Gpa_Calculator/gpa_calculator/src/main/java/com/example/DuplicateCourseException.java
-/Users/bikong/Git/Gpa_Calculator/gpa_calculator/src/main/java/com/example/EmptyCourseListException.java
 /Users/bikong/Git/Gpa_Calculator/gpa_calculator/src/main/java/com/example/FileManager.java
-/Users/bikong/Git/Gpa_Calculator/gpa_calculator/src/main/java/com/example/InvalidGradeException.java
 /Users/bikong/Git/Gpa_Calculator/gpa_calculator/src/main/java/com/example/Main.java
+/Users/bikong/Git/Gpa_Calculator/gpa_calculator/src/main/java/com/example/database/DatabaseConnection.java
+/Users/bikong/Git/Gpa_Calculator/gpa_calculator/src/main/java/com/example/database/TestDB.java
+/Users/bikong/Git/Gpa_Calculator/gpa_calculator/src/main/java/com/example/model/Course.java
+/Users/bikong/Git/Gpa_Calculator/gpa_calculator/src/main/java/com/example/service/CourseManager.java
+/Users/bikong/Git/Gpa_Calculator/gpa_calculator/src/main/java/com/example/service/CourseNotFoundException.java
+/Users/bikong/Git/Gpa_Calculator/gpa_calculator/src/main/java/com/example/service/DuplicateCourseException.java
+/Users/bikong/Git/Gpa_Calculator/gpa_calculator/src/main/java/com/example/service/EmptyCourseListException.java
+/Users/bikong/Git/Gpa_Calculator/gpa_calculator/src/main/java/com/example/service/InvalidGradeException.java
