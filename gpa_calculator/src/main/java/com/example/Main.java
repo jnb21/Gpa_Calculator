@@ -1,8 +1,8 @@
-package pack;
+package com.example;
 
-import java.util.Scanner;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 	 

@@ -1,1 +1,9 @@
 com/example/App.class
+com/example/FileManager.class
+com/example/InvalidGradeException.class
+com/example/CourseNotFoundException.class
+com/example/CourseManager.class
+com/example/Main.class
+com/example/DuplicateCourseException.class
+com/example/EmptyCourseListException.class
+com/example/Course.class

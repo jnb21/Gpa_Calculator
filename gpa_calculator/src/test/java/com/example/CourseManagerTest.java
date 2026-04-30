@@ -1,66 +1,69 @@
 package com.example;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 public class CourseManagerTest {
 
     @Test
-    void testAddCourse(){
-        
+    void testAddCourse() throws Exception {
         CourseManager cm = new CourseManager();
 
-        cm.addCourse("COMP352", 3, 4.0);
+        Course crs = new Course("Programming", "B+", 3.0);
+        cm.addCourse(crs);
 
-        assertEquals(1, cm.getSize());
+        assertEquals(1, cm.getCourseListSize());
     }
 
     @Test
-    void testTotalCredits() {
+    void testTotalCredits() throws Exception {
         CourseManager cm = new CourseManager();
 
-        cm.addCourse("Math", 3, 4.0);
-        cm.addCourse("Physics", 4, 3.0);
+        cm.addCourse(new Course("Math", "A", 4.0));
+        cm.addCourse(new Course("Physics", "B", 3.0));
 
-        assertEquals(7, cm.totalCredits());
+        assertEquals(7.0, cm.getTotalCredits(), 0.0001);
     }
 
     @Test
-    void testGPA() {
+    void testGPA() throws Exception {
         CourseManager cm = new CourseManager();
 
-        cm.addCourse("Math", 3, 4.0);    // 12 points
-        cm.addCourse("Physics", 1, 2.0); // 2 points
+        cm.addCourse(new Course("Math", "A", 4.0));      // 4.0 * 4 = 16
+        cm.addCourse(new Course("Physics", "B", 3.0));   // 3.0 * 3 = 9
 
-        // GPA = 14 / 4 = 3.5
-        assertEquals(3.5, cm.calculateGPA(), 0.0001);
+        // Total = 25 / 7 = 3.5714
+        assertEquals(25.0 / 7.0, cm.calculateGPA(), 0.0001);
     }
 
     @Test
-    void testEmptyCourses() {
+    void testEmptyCourses() throws Exception {
         CourseManager cm = new CourseManager();
 
-        assertEquals(0, cm.totalCredits());
-        assertEquals(0.0, cm.calculateGPA());
+        assertEquals(0.0, cm.getTotalCredits(), 0.0001);
+        assertThrows(EmptyCourseListException.class, () -> cm.calculateGPA());
+        assertEquals(0, cm.getCourseListSize());
     }
 
     @Test
-    void testDuplicateCourses() {
+    void testDuplicateCourses() throws Exception {
         CourseManager cm = new CourseManager();
 
-        cm.addCourse("Math", 3, 4.0);
-        cm.addCourse("Math", 3, 4.0);
+        cm.addCourse(new Course("Math", "A", 4.0));
 
-        assertEquals(1, cm.getSize());
+        assertThrows(DuplicateCourseException.class, () -> {
+            cm.addCourse(new Course("Math", "A", 4.0));
+        });
     }
 
     @Test
-    void testRemoveCourse() {
+    void testRemoveCourse() throws Exception {
         CourseManager cm = new CourseManager();
 
-        cm.addCourse("Math", 3, 4.0);
-        cm.removeCourse("Math");
+        cm.addCourse(new Course("Physics", "B", 3.0));
+        cm.removeCourse("Physics");
 
-        assertEquals(0, cm.getSize());
-}
+        assertEquals(0, cm.getCourseListSize());
+    }
 }

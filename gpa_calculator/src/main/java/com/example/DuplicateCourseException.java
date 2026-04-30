@@ -1,4 +1,4 @@
-package pack;
+package com.example;
 
 public class DuplicateCourseException extends Exception{
 

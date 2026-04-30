@@ -1,20 +1,22 @@
-package pack;
+package com.example;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.ArrayList;
 
 public class CourseManager {
 
-    private  ArrayList<Course> courseList = new ArrayList<>();
-	private  HashMap<String, Course> courseMap = new HashMap<>();
+    private  ArrayList<Course> courseList;
+	private  HashMap<String, Course> courseMap;
     private static HashMap<String, Double> gradeScale = new HashMap<>();
 
-    private static int numberOfCourses = 0;
-    private static  double totalPoints = 0, totalCredits = 0;
+    private  int numberOfCourses = 0;
+    private double totalPoints = 0, totalCredits = 0;
 
     // Static initialization block - runs once when class is loaded
-    static {
+    public CourseManager() {
+
+        //Grades
         gradeScale.put("A+", 4.3);
         gradeScale.put("A",  4.0);
         gradeScale.put("A-", 3.7);
@@ -28,6 +30,10 @@ public class CourseManager {
         gradeScale.put("D",  1.0);
         gradeScale.put("D-", 0.7);
         gradeScale.put("F",  0.0);
+
+        //Lists
+        this.courseList = new ArrayList<>();
+        this.courseMap = new HashMap<>();
     }
 
 
@@ -39,8 +45,10 @@ public class CourseManager {
     }
 
     public double getTotalCredits(){
-        if (totalCredits == 0)
-            System.out.println("\nYou have not earned any credits yet");
+        totalCredits = 0.0;
+        for (Course c: courseList){
+            totalCredits += c.getCourseCredit();
+        }
         return totalCredits;
     }
 
@@ -162,18 +170,21 @@ public class CourseManager {
     }
 
     //CALCULATE GPA
-    public double calculateGPA() throws EmptyCourseListException{
+    public double calculateGPA() throws EmptyCourseListException {
 
-        if (courseList.isEmpty())
-            throw new EmptyCourseListException();
+    if (courseList.isEmpty())
+        throw new EmptyCourseListException();
 
-        for (Course crs: courseList){
-            totalPoints += (gradeScale.get(crs.getCourseLetterGrade()) * crs.getCourseCredit());
-            totalCredits += crs.getCourseCredit();
-        }
+    double totalPoints = 0.0;
+    double totalCredits = 0.0;
 
-        return totalPoints/totalCredits;
+    for (Course crs: courseList){
+        totalPoints += gradeScale.get(crs.getCourseLetterGrade()) * crs.getCourseCredit();
+        totalCredits += crs.getCourseCredit();
     }
+
+    return totalPoints / totalCredits;
+}
 
     //CHECK DUPLICATES
         public boolean checkDuplicates(Course course){
@@ -203,7 +214,7 @@ public class CourseManager {
     c.setCourseCredits(newCredits);
     }
 
-            public void modifyCourseName(String courseName, String newName)
+        public void modifyCourseName(String courseName, String newName)
             throws CourseNotFoundException{
 
             if (!courseMap.containsKey(courseName)){
@@ -216,6 +227,10 @@ public class CourseManager {
 
         public List<Course> getAllCourses() {
         return courseList;
+        }
+
+        public int getCourseListSize(){
+            return courseList.size();
         }
 
         //LOADING COURSES FROM FILES
