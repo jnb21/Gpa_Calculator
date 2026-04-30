@@ -1,26 +1,52 @@
-# Student GPA Calculator – Java
+# GPA Calculator (Java + Maven)
 
-The Student GPA Calculator is a Java-based, menu-driven console application that allows users to manage academic courses and calculate their Grade Point Average (GPA). The application applies object-oriented programming principles and simulates a basic academic grading system.
+A simple GPA Calculator built in Java using object-oriented design, unit testing, and Maven.
 
-Users can add courses by entering the course name, credit value, and letter grade, remove previously added courses, view all registered courses, and calculate their GPA. Only courses entered by the user are included in the GPA calculation.
+## 🚀 Features
 
-The GPA is calculated using a weighted average based on course credits. Letter grades are converted into grade points using the Concordia University grading scale (e.g., A+ = 4.30, A = 4.00, B+ = 3.30).
+* Add courses with credits and grades
+* Remove courses
+* Calculate weighted GPA
+* Input validation (credits, grades)
+* Unit tested with JUnit
 
-The application includes input validation and custom exceptions to handle errors such as duplicate courses, invalid grades, negative credit values, or attempting to calculate GPA without any registered courses.
+## 🛠 Tech Stack
 
-## Project Structure
-- Course: Represents a course (name, credits, grade, grade points)
-- CourseManager: Manages course storage, validation, and GPA calculation
-- Main: Handles user interaction and menu navigation
-- Custom Exceptions: Handle invalid input and logical errors
+* Java 17
+* Maven
+* JUnit 5
 
-## Concepts Used
-- Object-Oriented Programming
-- List and HashMap
-- Console-based user interface
-- Weighted average calculations
+## 📂 Project Structure
 
-## Future Improvements
-- Save and load data from file
-- Support multiple students
-- Graphical user interface (GUI)
+```
+src/
+ ├── main/java/com/example/
+ │   ├── Course.java
+ │   ├── CourseManager.java
+ │   └── Main.java
+ └── test/java/com/example/
+     └── CourseManagerTest.java
+```
+
+## ▶️ Run the App
+
+Compile:
+
+```
+mvn clean compile
+```
+
+## 🧪 Run Tests
+
+```
+mvn test
+```
+
+## 📌 Future Improvements
+
+* Connect to MySQL database
+* Build REST API (Spring Boot)
+
+## 👤 Author
+
+Jordan Bikong
