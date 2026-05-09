@@ -14,7 +14,8 @@ import com.example.service.InvalidGradeException;
 
 
 public class Main {
-	 
+	
+	static CourseRepository repo = new CourseRepository();
 	static Scanner keyIn = new Scanner(System.in);
 	static CourseManager manager = new CourseManager ();
 
@@ -57,11 +58,14 @@ public class Main {
 			break;
 		
 		case 3:
-			try{
+			/*try{
 			manager.displayCourses();
 			} catch (EmptyCourseListException e){
 				System.out.println(e.getMessage());
 			}
+			*/
+
+			repo.viewCourses();
 			break;
 			
 		case 4:
@@ -124,6 +128,7 @@ public class Main {
 			String letterGrade = keyIn.nextLine().trim().toUpperCase();
 
 			Course newCourse = new Course(name,letterGrade,credit);
+			repo.addCourse(newCourse);
 			
 			
 			manager.addCourse(newCourse);
@@ -145,6 +150,7 @@ public class Main {
 	String name = keyIn.nextLine().trim().toUpperCase();
 
 	manager.removeCourse(name);
+	repo.removeCourse(name);
 
 	} catch (CourseNotFoundException e){
 		System.out.println(e.getMessage());
