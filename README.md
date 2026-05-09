@@ -1,52 +1,41 @@
-# GPA Calculator (Java + Maven)
+# GPA Calculator (Java + MySQL)
 
-A simple GPA Calculator built in Java using object-oriented design, unit testing, and Maven.
+A Java-based GPA Calculator using OOP principles and MySQL database integration. The project manages courses and calculates GPA through a simple console application.
 
-## 🚀 Features
+---
 
-* Add courses with credits and grades
-* Remove courses
-* Calculate weighted GPA
-* Input validation (credits, grades)
-* Unit tested with JUnit
+## Features
 
-## 🛠 Tech Stack
+- Add / remove courses  
+- View all courses  
+- Calculate GPA  
+- Track total credits  
+- Validate grades  
+- Prevent duplicate courses  
+- MySQL database persistence  
 
-* Java 17
-* Maven
-* JUnit 5
+---
 
-## 📂 Project Structure
+## Tech Stack
 
-```
-src/
- ├── main/java/com/example/
- │   ├── Course.java
- │   ├── CourseManager.java
- │   └── Main.java
- └── test/java/com/example/
-     └── CourseManagerTest.java
-```
+- Java  
+- JDBC  
+- MySQL  
+- Maven  
+- JUnit  
 
-## ▶️ Run the App
+---
 
-Compile:
+## Database
 
-```
-mvn clean compile
-```
+```sql
+CREATE DATABASE gpa_db;
 
-## 🧪 Run Tests
+USE gpa_db;
 
-```
-mvn test
-```
-
-## 📌 Future Improvements
-
-* Connect to MySQL database
-* Build REST API (Spring Boot)
-
-## 👤 Author
-
-Jordan Bikong
+CREATE TABLE courses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    grade VARCHAR(5) NOT NULL,
+    credits DOUBLE NOT NULL
+);
