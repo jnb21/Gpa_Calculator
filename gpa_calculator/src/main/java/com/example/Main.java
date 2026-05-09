@@ -4,6 +4,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
+import com.example.database.CourseRepository;
 import com.example.model.Course;
 import com.example.service.CourseManager;
 import com.example.service.CourseNotFoundException;
@@ -44,6 +45,11 @@ public class Main {
 		switch (choice) {
 		case 1:
 			addCourse();
+			
+			CourseRepository repo = new CourseRepository();
+			Course c = new Course("Math", "A", 4.0);
+			repo.addCourse(c);
+
 			break;
 
 		case 2:

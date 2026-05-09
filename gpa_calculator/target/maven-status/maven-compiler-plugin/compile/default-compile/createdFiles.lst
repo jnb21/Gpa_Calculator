@@ -1,10 +1,10 @@
 com/example/App.class
+com/example/database/CourseRepository.class
 com/example/FileManager.class
 com/example/service/InvalidGradeException.class
 com/example/service/CourseNotFoundException.class
 com/example/service/DuplicateCourseException.class
 com/example/service/CourseManager.class
-com/example/database/TestDB.class
 com/example/Main.class
 com/example/service/EmptyCourseListException.class
 com/example/database/DatabaseConnection.class
